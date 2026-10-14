@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf /Users/all/.npm 2>&1 && echo \"Removed\" || echo \"Some files could not be removed\")",
+      "Bash(mkdir -p /tmp/npm-cache)",
+      "Bash(npm config *)",
+      "Bash(npm install *)"
+    ],
+    "additionalDirectories": [
+      "/Users/all/.npm"
+    ]
+  }
+}
