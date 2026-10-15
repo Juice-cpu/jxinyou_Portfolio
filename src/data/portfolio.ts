@@ -1,8 +1,8 @@
-import type { PortfolioProfile, PortfolioProject, PortfolioHonor, PortfolioNews } from "@/types";
+import type { PortfolioProfile, PortfolioProject, PortfolioHonor, PortfolioNews, PortfolioPatent } from "@/types";
 
 export const profile: PortfolioProfile = {
   name: "江心悠", nameEn: "Xinyou Jiang", email: "jxinyou@outlook.com",
-  photo: "/images/profile.png", resume: "/resume.docx", codeUrl: "https://gitee.com/juice2582",
+  photo: "/images/profile-2026.jpg", resume: "/resume.docx", codeUrl: "https://gitee.com/juice2582",
   githubUrl: "https://github.com/Juice-cpu",
 };
 
@@ -69,16 +69,178 @@ export const projects: PortfolioProject[] = [
 ];
 
 export const honors: PortfolioHonor[] = [
-  { id: "rm-national", year: "2026", title: "RoboMaster 机甲大师超级对抗赛 · 全国赛", award: "三等奖" },
-  { id: "rm-south", year: "2026", title: "RoboMaster 超级对抗赛 · 南部赛区", award: "二等奖", certificate: "/images/certificates/rm-south.jpg" },
-  { id: "rm-infantry", year: "2026", title: "RoboMaster 高校联盟赛 · 华南站 · 步兵对抗赛", award: "一等奖 · 亚军", certificate: "/images/certificates/rm-infantry.jpg" },
-  { id: "rm-3v3", year: "2026", title: "RoboMaster 高校联盟赛 · 华南站 · 3v3 对抗赛", award: "一等奖 · 殿军", certificate: "/images/certificates/rm-3v3.jpg" },
-  { id: "rm-sentry", year: "2026", title: "RoboMaster 高校联盟赛 · 3v3 哨兵 / 步兵机器人", award: "二等奖", certificate: "/images/certificates/rm-sentry.jpg" },
-  { id: "rm-radar", year: "2026", title: "RoboMaster 超级对抗赛 · 雷达机器人", award: "优秀奖", certificate: "/images/certificates/rm-radar.jpg" },
-  { id: "innovation", year: "2025", title: "第十四届中国创新创业大赛 · 海洋科技与装备赛道 · 青年创客赛", award: "二等奖 · 亚军", certificate: "/images/certificates/innovation-silver.jpg" },
-  { id: "innovation-bronze", year: "2025", title: "大学生国际创新创业大赛 · 智能氢能无人船", award: "省级铜奖", certificate: "/images/certificates/innovation-bronze.jpg" },
-  { id: "raicom", year: "2025", title: "睿抗机器人开发者大赛 · 夺宝奇兵 OpenHarmony", award: "三等奖", certificate: "/images/certificates/raicom.jpg" },
-  { id: "rm-guangxi", year: "2025", title: "RoboMaster 高校联盟赛 · 广西站 · 步兵对抗赛", award: "二等奖", certificate: "/images/certificates/rm-guangxi.jpg" },
-  { id: "apmcm", year: "2024", title: "亚太地区大学生数学建模竞赛 APMCM", award: "三等奖", certificate: "/images/certificates/apmcm.jpg" },
-  { id: "marine", year: "2024", title: "第十四届全国海洋航行器设计与制作大赛 · 华南赛区", award: "三等奖", certificate: "/images/certificates/marine.jpg" },
+  {
+    "id": "rm-national",
+    "year": "2026",
+    "title": "第二十五届全国大学生机器人大赛 RoboMaster 2026 机甲大师超级对抗赛 · 全国赛",
+    "award": "三等奖"
+  },
+  {
+    "id": "rm-south",
+    "year": "2026",
+    "title": "第二十五届全国大学生机器人大赛 RoboMaster 2026 机甲大师超级对抗赛 · 区域赛（南部赛区）",
+    "award": "二等奖",
+    "certificate": "/images/certificates/rm-south.jpg"
+  },
+  {
+    "id": "rm-infantry",
+    "year": "2026",
+    "title": "第二十五届全国大学生机器人大赛 RoboMaster 2026 机甲大师高校联盟赛（华南站）· 步兵对抗赛",
+    "award": "一等奖 · 亚军",
+    "certificate": "/images/certificates/rm-infantry.jpg"
+  },
+  {
+    "id": "rm-3v3",
+    "year": "2026",
+    "title": "第二十五届全国大学生机器人大赛 RoboMaster 2026 机甲大师高校联盟赛（华南站）· 3v3 对抗赛 · 非甲级队伍",
+    "award": "一等奖 · 殿军",
+    "certificate": "/images/certificates/rm-3v3.jpg"
+  },
+  {
+    "id": "rm-sentry",
+    "year": "2026",
+    "title": "第二十五届全国大学生机器人大赛 RoboMaster 2026 机甲大师高校联盟赛 · 3v3 对抗赛 · 哨兵机器人组",
+    "award": "机器人竞技奖 · 二等奖",
+    "certificate": "/images/certificates/rm-sentry.jpg"
+  },
+  {
+    "id": "rm-infantry-technical",
+    "year": "2026",
+    "title": "第二十五届全国大学生机器人大赛 RoboMaster 2026 机甲大师高校联盟赛 · 步兵对抗赛",
+    "award": "机器人竞技奖 · 二等奖",
+    "certificate": "/images/certificates/rm-infantry-technical.jpg"
+  },
+  {
+    "id": "rm-sentry-super",
+    "year": "2026",
+    "title": "第二十五届全国大学生机器人大赛 RoboMaster 2026 机甲大师超级对抗赛 · 哨兵机器人组",
+    "award": "机器人竞技奖 · 三等奖",
+    "certificate": "/images/certificates/rm-sentry-super.jpg"
+  },
+  {
+    "id": "rm-radar",
+    "year": "2026",
+    "title": "第二十五届全国大学生机器人大赛 RoboMaster 2026 机甲大师超级对抗赛 · 雷达组",
+    "award": "机器人竞技奖 · 优秀奖",
+    "certificate": "/images/certificates/rm-radar.jpg"
+  },
+  {
+    "id": "innovation",
+    "year": "2025",
+    "title": "第十四届中国创新创业大赛（广东·广州赛区）暨2025年广州科技创新创业大赛行业赛 · 海洋科技与装备赛道 · 青年创客赛",
+    "award": "二等奖 · 亚军",
+    "detail": "海洋创新实践组｜氢舟智航——开启无人船氢能驱动的新航界",
+    "certificate": "/images/certificates/innovation-silver.jpg"
+  },
+  {
+    "id": "innovation-bronze",
+    "year": "2025",
+    "title": "“建行杯”中国国际大学生创新大赛（2025）· 广东省分赛",
+    "award": "铜奖",
+    "detail": "智能氢能无人船——开启无人船氢能驱动新航界",
+    "certificate": "/images/certificates/innovation-bronze.jpg"
+  },
+  {
+    "id": "raicom",
+    "year": "2025",
+    "title": "2025年睿抗机器人开发者大赛（RAICOM）· 广东赛区 · 夺宝奇兵—OpenHarmony应用赛",
+    "award": "三等奖",
+    "certificate": "/images/certificates/raicom.jpg"
+  },
+  {
+    "id": "rm-guangxi",
+    "year": "2025",
+    "title": "第二十四届全国大学生机器人大赛 RoboMaster 2025 机甲大师高校联盟赛（广西站）· 步兵对抗赛",
+    "award": "二等奖",
+    "certificate": "/images/certificates/rm-guangxi.jpg"
+  },
+  {
+    "id": "rm-infantry-2025",
+    "year": "2025",
+    "title": "第二十四届全国大学生机器人大赛 RoboMaster 2025 机甲大师高校联盟赛 · 步兵对抗赛",
+    "award": "机器人竞技奖 · 三等奖",
+    "certificate": "/images/certificates/rm-infantry-2025.jpg"
+  },
+  {
+    "id": "marine",
+    "year": "2025",
+    "title": "第十四届全国海洋航行器设计与制作大赛 · 华南赛区",
+    "award": "三等奖",
+    "detail": "A1 新概念创意设计｜绿色智能氢动力无人船",
+    "certificate": "/images/certificates/marine.jpg"
+  },
+  {
+    "id": "apmcm",
+    "year": "2024",
+    "title": "2024 Asia and Pacific Mathematical Contest in Modeling（APMCM）· 亚太地区大学生数学建模竞赛",
+    "award": "三等奖",
+    "detail": "Undergraduate Group · 本科生组",
+    "certificate": "/images/certificates/apmcm.jpg"
+  },
+  {
+    "id": "rm-season-plan",
+    "year": "2025",
+    "title": "RoboMaster 2025 机甲大师高校联盟赛",
+    "award": "赛季规划奖"
+  }
+];
+
+export const patents: PortfolioPatent[] = [
+  {
+    "id": "six-axis-arm",
+    "title": "一种六轴吸附式机械臂及移动搬运机器人",
+    "type": "实用新型",
+    "applicationNumber": "202521934271.4",
+    "status": "已授权",
+    "documentDate": "2026-07-24",
+    "publicationNumber": "CN224544573U",
+    "inventorRank": 5,
+    "inventorCount": 10,
+    "certificate": "/images/patents/six-axis-arm.jpg"
+  },
+  {
+    "id": "hydrogen-tank",
+    "title": "一种带快拆快装结构的固态储氢罐",
+    "type": "实用新型",
+    "applicationNumber": "202520559337.X",
+    "status": "已授权",
+    "documentDate": "2025-12-19",
+    "publicationNumber": "CN223690822U",
+    "inventorRank": 6,
+    "inventorCount": 7,
+    "certificate": "/images/patents/hydrogen-tank.jpg"
+  },
+  {
+    "id": "hydrogen-usv",
+    "title": "一种智能氢能无人船",
+    "type": "实用新型",
+    "applicationNumber": "202522327220.1",
+    "status": "申请已受理",
+    "documentDate": "2025-11-03",
+    "inventorRank": 5,
+    "inventorCount": 8,
+    "certificate": "/images/patents/hydrogen-usv.jpg"
+  },
+  {
+    "id": "mobile-robot",
+    "title": "一种移动搬运机器人",
+    "type": "发明专利",
+    "applicationNumber": "202511273586.3",
+    "status": "申请已受理",
+    "documentDate": "2025-09-08",
+    "inventorRank": 2,
+    "inventorCount": 9,
+    "certificate": "/images/patents/mobile-robot.jpg"
+  },
+  {
+    "id": "dual-feed-launcher",
+    "title": "一种具有下供双链路的发射装置和机器人",
+    "type": "发明专利",
+    "applicationNumber": "202510903887.3",
+    "status": "申请已受理",
+    "documentDate": "2025-07-01",
+    "inventorRank": 3,
+    "inventorCount": 8,
+    "certificate": "/images/patents/dual-feed-launcher.jpg"
+  }
 ];

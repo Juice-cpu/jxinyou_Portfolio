@@ -148,6 +148,20 @@ export interface PortfolioHonor {
   title: string;
   award: string;
   certificate?: string;
+  detail?: string;
+}
+
+export interface PortfolioPatent {
+  id: string;
+  title: string;
+  type: "实用新型" | "发明专利";
+  applicationNumber: string;
+  status: "已授权" | "申请已受理";
+  documentDate: string;
+  publicationNumber?: string;
+  inventorRank: number;
+  inventorCount: number;
+  certificate: string;
 }
 
 export interface PortfolioNews {

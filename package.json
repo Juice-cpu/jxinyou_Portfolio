@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "NEXT_BUILD_DIR=.next-build next build",
+    "build:github": "NEXT_PUBLIC_BASE_PATH=/jxinyou_Portfolio npm run build",
+    "prepare:github": "npm run build:github && node scripts/prepare-github.mjs",
     "start": "next start",
     "lint": "next lint"
   },
