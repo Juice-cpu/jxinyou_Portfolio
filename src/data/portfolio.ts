@@ -30,7 +30,7 @@ export const projects: PortfolioProject[] = [
     category: "自主导航", date: "2024.09 — 2026.06", role: "ICBK 破冰船战队 · 导航组组长",
     description: "基于 ROS2 Humble 与 Nav2，构建从激光雷达感知、定位建图、路径规划到实车底盘控制的完整导航系统，支持战术巡逻、动态目标追击与实时避障。",
     result: "Gazebo 仿真 → 真实机器人部署", tags: ["ROS2", "Nav2", "Livox Mid360", "Fast-LIO / Point-LIO"],
-    media: { src: "/images/projects/auto-nav-01.jpg", type: "image", alt: "RoboMaster 哨兵机器人在场地中进行导航测试" },
+    media: { src: "/images/projects/sentry-navigation.gif", type: "gif", alt: "RoboMaster 全向哨兵自主导航演示", poster: "/images/projects/sentry-navigation-poster.jpg" },
     details: "融合 Livox Mid360、IMU、Fast-LIO / Point-LIO、点云地面分割与裁判系统，形成感知、决策、规划、执行的 Sim2Real 闭环。由组员成长为导航组组长，负责自主导航与路径规划代码开发、系统联调及技术文档编写。",
   },
   {
