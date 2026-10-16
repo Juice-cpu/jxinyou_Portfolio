@@ -56,6 +56,9 @@ h1 span { font-size: inherit; }
 .project-media-column { min-width: 0; }
 .project-media { width: 100%; height: auto; max-height: 220px; object-fit: contain; display: block; }
 .project-image-button { padding: 0; width: 100%; display: block; }
+.project-media-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 12px; margin-top: 7px; font-size: 12px; }
+.gif-toggle { padding: 0; color: var(--blue); }
+.gif-toggle:hover { text-decoration: underline; }
 .project-content h3 { font-size: 16px; line-height: 1.55; font-weight: 600; color: var(--blue); }
 .project-title-en { font-size: 13px; margin-top: 2px; }
 .project-role { font-size: 13px; margin-top: 4px; }

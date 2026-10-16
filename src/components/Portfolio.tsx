@@ -6,6 +6,33 @@ import type { PortfolioProfile, PortfolioProject, PortfolioHonor, PortfolioNews,
 import { asset, cn } from "@/lib/utils";
 const filters = ["全部", "具身智能", "自主导航", "感知与控制"] as const;
 
+function ProjectMedia({ project, onPreview }: {
+  project: PortfolioProject;
+  onPreview: (preview: { src: string; title: string }) => void;
+}) {
+  const media = project.media;
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    // Honor reduced motion by default, but always offer an explicit way to play.
+    setPlaying(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  if (!media) return <NavigationSketch variant={project.id} />;
+  if (media.type === "video") return <video className="project-media" src={asset(media.src)} poster={media.poster ? asset(media.poster) : undefined} controls playsInline preload="none" aria-label={media.alt} />;
+
+  const animated = media.type === "gif" && !!media.poster;
+  return <>
+    <button className="project-image-button" aria-label={`放大图片：${project.title}`} onClick={() => onPreview({ src: media.src, title: media.alt })}>
+      <img className={cn("project-media", animated && "project-media-gif")} src={asset(animated && !playing ? media.poster! : media.src)} alt={media.alt} loading="lazy" />
+    </button>
+    {animated && <div className="project-media-controls">
+      <button className="gif-toggle" aria-label={`${playing ? "暂停" : "播放"}动画：${project.title}`} aria-pressed={playing} onClick={() => setPlaying(value => !value)}>{playing ? "暂停 GIF" : "播放 GIF"}</button>
+      <a href={asset(media.src)} target="_blank" rel="noopener noreferrer">查看原始 GIF ↗</a>
+    </div>}
+  </>;
+}
+
 function NavigationSketch({ variant }: { variant: string }) {
   const boat = variant === "usv";
   if (variant === "onero") return <div className="navigation-sketch">
@@ -97,7 +124,7 @@ export default function Portfolio({ profile, projects, honors, news, patents }: 
           <div className="project-toolbar"><div className="project-filters" aria-label="筛选项目">{filters.map(item => <button key={item} className={cn("filter-button", filter === item && "selected")} onClick={() => setFilter(item)} aria-pressed={filter === item}>{item}</button>)}</div><span className="project-count" aria-live="polite">{String(visibleProjects.length).padStart(2, "0")} 个项目</span></div>
           <div className="project-list">{visibleProjects.map(project => <article key={project.id} id={project.id} className="project-row">
             <div className="project-media-column">
-              {project.media ? project.media.type === "video" ? <video className="project-media" src={asset(project.media.src)} poster={project.media.poster ? asset(project.media.poster) : undefined} controls playsInline preload="none" aria-label={project.media.alt} /> : <button className="project-image-button" aria-label={`放大图片：${project.title}`} onClick={() => setPreview({ src: project.media!.src, title: project.media!.alt })}><picture>{project.media.type === "gif" && project.media.poster && <source media="(prefers-reduced-motion: reduce)" srcSet={asset(project.media.poster)} />}<img className={cn("project-media", project.media.type === "gif" && "project-media-gif")} src={asset(project.media.src)} alt={project.media.alt} loading="lazy" /></picture></button> : <NavigationSketch variant={project.id} />}
+              <ProjectMedia project={project} onPreview={setPreview} />
             </div>
             <div className="project-content"><h3>{project.title}</h3><p className="project-title-en">{project.titleEn}</p><p className="project-role">{project.role}</p><p className="project-description">{project.description}</p><p className="project-result"><span />{project.result}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
               <div className="project-actions"><details><summary>项目详情 <ChevronDown size={13} /></summary><p>{project.details}</p></details>{project.links?.map(link => <a key={link.href} href={link.href.startsWith("/") ? asset(link.href) : link.href} target="_blank" rel="noopener noreferrer">{link.label} <ArrowUpRight size={12} /></a>)}</div>
