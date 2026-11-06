@@ -127,6 +127,15 @@ export interface PortfolioProfile {
   githubUrl: string;
 }
 
+export interface PortfolioDemoVideo {
+  src: string;
+  poster: string;
+  title: string;
+  context: string;
+  duration: string;
+  portrait?: boolean;
+}
+
 export interface PortfolioProject {
   id: string;
   title: string;
@@ -138,6 +147,7 @@ export interface PortfolioProject {
   result: string;
   tags: string[];
   media?: { src: string; type: "image" | "gif" | "video"; alt: string; poster?: string };
+  demoVideo?: PortfolioDemoVideo;
   links?: { label: string; href: string }[];
   details: string;
 }

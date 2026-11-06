@@ -1,10 +1,40 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowUpRight, Check, ChevronDown, Download, X, Copy } from "lucide-react";
-import type { PortfolioProfile, PortfolioProject, PortfolioHonor, PortfolioNews, PortfolioPatent } from "@/types";
+import { ArrowDown, ArrowUpRight, Check, ChevronDown, Download, Play, X, Copy } from "lucide-react";
+import type { PortfolioDemoVideo, PortfolioProfile, PortfolioProject, PortfolioHonor, PortfolioNews, PortfolioPatent } from "@/types";
 import { asset, cn } from "@/lib/utils";
 const filters = ["全部", "具身智能", "自主导航", "感知与控制"] as const;
+
+function DemoVideo({ demo }: { demo: PortfolioDemoVideo }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [started, setStarted] = useState(false);
+  const src = asset(demo.src);
+  const poster = asset(demo.poster);
+
+  function start() {
+    const video = videoRef.current;
+    if (!video) return;
+    setStarted(true);
+    video.focus();
+    void video.play().catch(() => { /* Native controls and the direct link remain available. */ });
+  }
+
+  return <figure className={cn("demo-video", demo.portrait && "demo-video-portrait")}>
+    <div className="demo-video-stage">
+      <video ref={videoRef} src={src} poster={poster} controls={started} tabIndex={started ? 0 : -1} playsInline preload="none" aria-label={demo.title} />
+      {!started && <button type="button" className="demo-video-cover" onClick={start} aria-label={`播放：${demo.title}`}>
+        <img src={poster} alt="" loading="lazy" />
+        <span className="demo-play-icon" aria-hidden="true"><Play size={20} fill="currentColor" /></span>
+        <span className="demo-video-duration" aria-hidden="true">{demo.duration}</span>
+      </button>}
+    </div>
+    <figcaption className="demo-video-caption">
+      <div><p>{demo.title}</p><span>{demo.context}</span></div>
+      <a href={src} target="_blank" rel="noopener noreferrer" aria-label={`在新标签页观看：${demo.title}`}>打开 <ArrowUpRight size={13} aria-hidden="true" /></a>
+    </figcaption>
+  </figure>;
+}
 
 function ProjectMedia({ project, onPreview }: {
   project: PortfolioProject;
@@ -106,7 +136,7 @@ export default function Portfolio({ profile, projects, honors, news, patents }: 
             </aside>
             <div className="intro-copy">
             <p>你好！我是江心悠，广州航海学院<span className="quiet-text"> / 广州交通大学（筹）</span>车辆工程专业本科生（2024–2028），专业综测排名 <strong>1 / 34</strong>。目前在<span className="inline-emphasis">大湾区大学</span>担任访问学生，开展轮足机器人零样本物体导航研究。</p>
-            <p>我曾担任 <strong>RoboMaster ICBK 破冰船战队导航组组长</strong>，从仿真搭建到实车部署，开发机器人自主导航、路径规划与感知系统；同时参与智能氢能无人船导航控制研究，关注算法在真实环境中的稳定运行。</p>
+            <p>我曾担任 <strong>RoboMaster ICBK 破冰船战队导航组组长、项目管理</strong>，从仿真搭建到实车部署，开发机器人自主导航、路径规划与感知系统；同时参与智能氢能无人船导航控制研究，关注算法在真实环境中的稳定运行。</p>
             <p><strong>研究兴趣：</strong>具身智能、机器人自主导航、多传感器融合与机器人控制。</p>
             <p><strong>实践方向：</strong>从感知到行动，从仿真到现实，探索机器人在真实环境中的自主运行。</p>
             <p>Email: <a href={`mailto:${profile.email}`}>{profile.email}</a></p>
@@ -122,9 +152,13 @@ export default function Portfolio({ profile, projects, honors, news, patents }: 
         <section id="projects" className="content-section projects-section">
           <div className="section-heading"><h2>项目与实践 <span>Selected Work</span></h2><span className="section-index">02</span></div>
           <div className="project-toolbar"><div className="project-filters" aria-label="筛选项目">{filters.map(item => <button key={item} className={cn("filter-button", filter === item && "selected")} onClick={() => setFilter(item)} aria-pressed={filter === item}>{item}</button>)}</div><span className="project-count" aria-live="polite">{String(visibleProjects.length).padStart(2, "0")} 个项目</span></div>
-          <div className="project-list">{visibleProjects.map(project => <article key={project.id} id={project.id} className="project-row">
+          <div className="project-list">{visibleProjects.map(project => <article key={project.id} id={project.id} className={cn("project-row", project.demoVideo && "project-row-with-demo", project.demoVideo?.portrait && "project-row-portrait-demo")}>
             <div className="project-media-column">
-              <ProjectMedia project={project} onPreview={setPreview} />
+              {(project.media || !project.demoVideo) && <div className={project.demoVideo ? "demo-simulation" : undefined}>
+                {project.demoVideo && project.media?.type === "gif" && <p className="demo-simulation-label">多楼层仿真演示</p>}
+                <ProjectMedia project={project} onPreview={setPreview} />
+              </div>}
+              {project.demoVideo && <DemoVideo demo={project.demoVideo} />}
             </div>
             <div className="project-content"><h3>{project.title}</h3><p className="project-title-en">{project.titleEn}</p><p className="project-role">{project.role}</p><p className="project-description">{project.description}</p><p className="project-result"><span />{project.result}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
               <div className="project-actions"><details><summary>项目详情 <ChevronDown size={13} /></summary><p>{project.details}</p></details>{project.links?.map(link => <a key={link.href} href={link.href.startsWith("/") ? asset(link.href) : link.href} target="_blank" rel="noopener noreferrer">{link.label} <ArrowUpRight size={12} /></a>)}</div>

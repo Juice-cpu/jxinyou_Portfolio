@@ -24,6 +24,7 @@ export const projects: PortfolioProject[] = [
     result: "静态仿真：SR 63% · SPL 28.5%", tags: ["ObjectNav", "VLM", "语义地图", "动态避障"],
     details: "构建物体、语义与可通行三层地图；由启发式多楼层规划器负责单层探索与跨楼层转换，多视点 VLM 验证模块负责目标确认，动态行人避障流水线负责前瞻性避让。跨地形能力仍在研究中，下一阶段将探索利用强化学习实现上下楼时的抬腿与收腿动作。",
     media: { src: "/images/projects/object-navigation.gif", type: "gif", alt: "轮足机器人零样本多楼层物体导航演示", poster: "/images/projects/object-navigation-poster.jpg" },
+    demoVideo: { src: "/videos/tita-indoor-navigation.mp4", poster: "/images/projects/tita-indoor-navigation.jpg", title: "TITA 室内导航实机演示", context: "走廊行驶 · 地图与机器人视角", duration: "0:32" },
   },
   {
     id: "sentry", title: "RoboMaster 全向哨兵自主导航", titleEn: "Omnidirectional Sentry Navigation · Sim2Real",
@@ -38,7 +39,7 @@ export const projects: PortfolioProject[] = [
     category: "自主导航", date: "2024.12 — 至今", role: "国家级大创项目 · 导航算法开发",
     description: "针对氢燃料电池系统 1–3 秒输入时滞，设计基于辅助系统的路径跟踪控制方案。融合 GPS、毫米波雷达与视觉传感器，开展水域自主避障与路径规划验证。",
     result: "导航算法三次迭代 · 响应时间缩短 30%", tags: ["SLAM", "多传感器融合", "路径跟踪", "自适应模糊控制"],
-    media: { src: "/images/projects/usv-navigation.jpg", type: "image", alt: "智能氢能无人船在真实水域进行导航测试" },
+    demoVideo: { src: "/videos/usv-water-demo.mp4", poster: "/images/projects/usv-navigation.jpg", title: "无人船水面实测", context: "真实水域 · 航行录像", duration: "1:08", portrait: true },
     details: "导航算法由 PID 迭代至自适应模糊控制，再整合多传感器融合避障。完成真实水域数据采集与模型验证。相关《水面深度测绘氢能智能无人船关键技术研究》获国家级大创立项，智能氢能无人船项目获大学生国际创新创业大赛省级铜奖。",
     links: [{ label: "获奖证书", href: "/images/certificates/innovation-bronze.jpg" }],
   },
